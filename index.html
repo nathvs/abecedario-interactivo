@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abecedario Interactivo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fefefe;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #333;
+    }
+    .menu-letras {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .letra-btn {
+      background-color: #a8d0e6;
+      border: none;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      width: 50px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .letra-btn:hover {
+      background-color: #85c1dc;
+    }
+    .contenido-letra {
+      margin-top: 2rem;
+    }
+    .contenido-letra img {
+      width: 200px;
+      height: auto;
+    }
+    audio {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Abecedario Interactivo</h1>
+  <div class="menu-letras">
+    <button class="letra-btn" onclick="mostrarLetra('A')">A</button>
+    <button class="letra-btn" onclick="mostrarLetra('B')">B</button>
+    <button class="letra-btn" onclick="mostrarLetra('C')">C</button>
+    <!-- Agregar más letras aquí -->
+  </div>
+
+  <div id="letraContenido" class="contenido-letra"></div>
+
+  <script>
+    const contenido = {
+      'A': {
+        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/A_font_awesome.svg/1024px-A_font_awesome.svg.png',
+        dibujo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Airplane_silhouette.png/640px-Airplane_silhouette.png',
+        palabra: 'Avión',
+        frase: 'El avión despega del aeropuerto.',
+        audio: 'https://upload.wikimedia.org/wikipedia/commons/7/76/Es-a.ogg'
+      },
+      'B': {
+        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Latin_capital_letter_B.svg/1024px-Latin_capital_letter_B.svg.png',
+        dibujo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Boat-icon.png/640px-Boat-icon.png',
+        palabra: 'Barco',
+        frase: 'El barco navega por el mar.',
+        audio: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Es-be.ogg'
+      },
+      'C': {
+        imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/C_font_awesome.svg/1024px-C_font_awesome.svg.png',
+        dibujo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Car_icon.png/640px-Car_icon.png',
+        palabra: 'Coche',
+        frase: 'El coche va por la carretera.',
+        audio: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Es-ce.ogg'
+      }
+    };
+
+    function mostrarLetra(letra) {
+      const datos = contenido[letra];
+      if (!datos) return;
+      const contenedor = document.getElementById('letraContenido');
+      contenedor.innerHTML = `
+        <h2>Letra ${letra}</h2>
+        <img src="${datos.imagen}" alt="Letra ${letra}"><br>
+        <img src="${datos.dibujo}" alt="Dibujo ${datos.palabra}"><br>
+        <h3>${datos.palabra}</h3>
+        <p>${datos.frase}</p>
+        <audio controls src="${datos.audio}">Tu navegador no soporta audio.</audio>
+      `;
+    }
+  </script>
+</body>
+</html>
